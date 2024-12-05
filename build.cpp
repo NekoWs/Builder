@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
     ifstream build("build.txt");
-    string args = "-static";
+    string args = "-static -s -Wl,--gc-sections";
     if (build.good()) {
         cout << "Custom build arguments found in build.txt. Using them..." << endl;
         buffer.str("");
