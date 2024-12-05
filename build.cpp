@@ -81,6 +81,9 @@ int main(int argc, char *argv[]) {
             file_name + ".cpp -o " + file_name + ".exe";
     cout << "Build Command: " << cmd << endl;
     cout << "Building..." << endl;
-    system(cmd.data());
+    int result = system(cmd.data());
+    if (result != 0) {
+        system("pause");
+    }
     return 0;
 }
