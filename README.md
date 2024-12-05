@@ -14,3 +14,6 @@ Drag & Build a C/C++ File with GCC/G++
 ## Build
 - Clone this repository
 - Just compile **build.cpp** using your favorite C++ compiler.
+
+## Links
+[MinGW64-win-builds](https://github.com/niXman/mingw-builds-binaries/releases)
