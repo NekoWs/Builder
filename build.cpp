@@ -6,10 +6,6 @@
 
 using namespace std;
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        cout << "Please drag a C/C++ file into this program." << endl;
-        return 0;
-    }
     if (argc > 2) {
         cout << "This program can only build C/C++ files with dragging!" << endl;
         return 0;
@@ -22,20 +18,23 @@ int main(int argc, char *argv[]) {
     string path_file = cwd + "\\path";
     string path;
     ifstream ifs(path_file);
-    if (!ifs.is_open()) {
-        cout << "Couldn't open file \"" << path_file << "\"!" << endl;
-        return 0;
-    }
     stringstream buffer;
     buffer << ifs.rdbuf();
     string buffs = buffer.str();
     if (!ifs.good() || buffs.empty()) {
         ofstream ofs(path_file);
         if (ofs.is_open()) {
+            errno = 0;
             cout << "Please enter MinGW path: " << endl;
             getline(cin, path);
             ofs << path;
-            cout << path << endl;
+            int err = errno;
+            if (err != 0) {
+                cout << strerror(err) << endl;
+            } else {
+                cout << "MinGW path set successfully! Now you can drag and drop a C/C++ file to build." << endl;
+            }
+            getchar();
             return 0;
         } else {
             cout << "Couldn't open file \"" << path_file << "\"!" << endl;
@@ -50,6 +49,10 @@ int main(int argc, char *argv[]) {
         ofstream ofs(path_file);
         cout << R"("g++.exe" or "gcc.exe" not found. Please check your MinGW path!)" << endl;
         ofs << "";
+        return 0;
+    }
+    if (argc < 2) {
+        cout << "Please drag a C/C++ file into this program." << endl;
         return 0;
     }
     ifstream build("build.txt");
