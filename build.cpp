@@ -25,14 +25,14 @@ int main(int argc, char *argv[]) {
         ofstream ofs(path_file);
         if (ofs.is_open()) {
             errno = 0;
-            cout << "Please enter MinGW path: " << endl;
+            cout << "Please enter GCC path: " << endl;
             getline(cin, path);
             ofs << path;
             int err = errno;
             if (err != 0) {
                 cout << strerror(err) << endl;
             } else {
-                cout << "MinGW path set successfully! Now you can drag and drop a C/C++ file to build." << endl;
+                cout << "GCC path set successfully! Now you can drag and drop a C/C++ file to build." << endl;
             }
             getchar();
             return 0;
@@ -42,12 +42,12 @@ int main(int argc, char *argv[]) {
         }
     }
     path = buffs + "\\bin";
-    cout << "MinGW Path: " << path << endl;
+    cout << "GCC Path: " << path << endl;
     ifstream gpp(path + "\\g++.exe");
     ifstream gcc(path + "\\gcc.exe");
     if (!gpp.good() || !gcc.good()) {
         ofstream ofs(path_file);
-        cout << R"("g++.exe" or "gcc.exe" not found. Please check your MinGW path!)" << endl;
+        cout << R"("g++.exe" or "gcc.exe" not found. Please check your GCC path!)" << endl;
         ofs << "";
         return 0;
     }
