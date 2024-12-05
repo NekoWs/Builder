@@ -1,5 +1,5 @@
 # Builder
-Drag & Build a C/C++ File with GCC/G++
+Drag & Build a C/C++ File with GCC
 
 ## How to use
 - Download **Builder.exe** on [Release](https://github.com/NekoWs/Builder/releases) or [Build it yourself](#build)
